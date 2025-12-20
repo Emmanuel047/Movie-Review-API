@@ -12,9 +12,9 @@ class Reviews(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
-class Meta:
+    class Meta:
     #Newest First
-    ordering = ['-created_at']
+     ordering = ['-created_at']
 
     def __str__(self):
         return f"{self.movie_title}, {self.rating/5} - {self.user.username}"
