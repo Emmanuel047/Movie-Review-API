@@ -1,0 +1,65 @@
+body { 
+    font-family: 'Segoe UI', sans-serif; 
+    max-width: 1000px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    background: #f8f9fa; 
+    line-height: 1.6; 
+}
+.hero { 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+    color: white; 
+    padding: 40px; 
+    border-radius: 15px; 
+    text-align: center; 
+    margin-bottom: 30px; 
+}
+.endpoint { 
+    background: white; 
+    border-radius: 12px; 
+    padding: 25px; 
+    margin: 20px 0; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+}
+.method { 
+    font-weight: bold; 
+    color: #2563eb; 
+    font-size: 20px; 
+}
+pre { 
+    background: #f1f5f9; 
+    padding: 20px; 
+    border-radius: 8px; 
+    overflow-x: auto; 
+    font-size: 14px; 
+    border-left: 4px solid #3b82f6; 
+}
+.copy-btn { 
+    background: #3b82f6; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    float: right; 
+    margin-bottom: 10px; 
+}
+.copy-btn:hover { background: #2563eb; }
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin: 20px 0; 
+}
+th, td { 
+    padding: 12px; 
+    text-align: left; 
+    border-bottom: 1px solid #e5e7eb; 
+}
+th { 
+    background: #f8fafc; 
+    font-weight: 600; 
+}
+.success { 
+    color: #10b981; 
+    font-weight: bold; 
+}

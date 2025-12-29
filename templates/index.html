@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Review API</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/docs.css' %}">
+</head>
+<body>
+    <div class="hero">
+        <h1>🎬 Movie Review API</h1>
+        <p><strong>Production Ready • TMDB Integration • JWT Auth • Full CRUD</strong></p>
+    </div>
+
+    <div class="endpoint">
+        <h2><span class="method">1️⃣ POST</span> /api/register/ <span class="success">(First time)</span></h2>
+        <button class="copy-btn" onclick="copyToClipboard('register')">Copy</button>
+        <pre id="register">{
+  "username": "testuser",
+  "password: "testpass123",
+  "password_confirm": "testpass123"
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <h2><span class="method">2️⃣ POST</span> /api/token/ <span class="success">(Get Token!)</span></h2>
+        <button class="copy-btn" onclick="copyToClipboard('login')">Copy</button>
+        <pre id="login">{
+  "username": "testuser",
+  "password": "testpass123"
+}</pre>
+        <p class="success">📋 Copy <strong>"access"</strong> token from response → Use everywhere!</p>
+    </div>
+
+    <div class="endpoint">
+        <h2><span class="method">3️⃣ POST</span> /api/reviews/ <span class="success">(TMDB Magic!)</span></h2>
+        <button class="copy-btn" onclick="copyToClipboard('review')">Copy</button>
+        <pre id="review">{
+  "movie_title": "Inception",
+  "content": "Mind-bending masterpiece!",
+  "rating": 5
+}</pre>
+        <p><strong>Headers:</strong> <code>Authorization: Bearer YOUR_ACCESS_TOKEN</code></p>
+        <p class="success">✨ Auto-adds TMDB poster + rating + overview!</p>
+    </div>
+
+    <div class="endpoint">
+        <h2><span class="method">4️⃣ GET</span> /api/reviews/?page=1</h2>
+        <p>List all reviews (10 per page) + search + sort</p>
+        <table>
+            <tr><th>Query</th><th>Example</th><th>Result</th></tr>
+            <tr><td>?page=2</td><td>/api/reviews/?page=2</td><td>Next 10 reviews</td></tr>
+            <tr><td>?ordering=-rating</td><td>/api/reviews/?ordering=-rating</td><td>Best rated first</td></tr>
+            <tr><td>?search=inception</td><td>/api/reviews/?search=inception</td><td>Search reviews</td></tr>
+        </table>
+        <p><strong>Headers:</strong> <code>Authorization: Bearer YOUR_TOKEN</code></p>
+    </div>
+
+    <div class="endpoint">
+        <h2><span class="method">🔄 PATCH</span> /api/reviews/1/</h2>
+        <h3>Use PUT for all Fields</h3>
+        <pre>{
+  "content": "Updated review!",
+  "rating": 5
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <h2><span class="method">🗑️ DELETE</span> /api/reviews/1/</h2>
+        <p><strong>Response:</strong> 204 No Content (deleted!)</p>
+    </div>
+
+    <script>
+        function copyToClipboard(id) {
+            navigator.clipboard.writeText(document.getElementById(id).textContent);
+            event.target.textContent = 'Copied!';
+            setTimeout(() => event.target.textContent = 'Copy', 2000);
+        }
+    </script>
+</body>
+</html>

@@ -17,20 +17,28 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-from movies.views import ReviewSet, ProfileSet
+from movies.views import ReviewSet, ProfileSet, register_user
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.http import HttpResponse
+from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from django.conf import settings
+
 
 
 router = DefaultRouter()
-router.register(r'profile', ProfileSet, basename='profile')
 router.register(r'reviews', ReviewSet, basename='reviews')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/token', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/register/', register_user, name='register'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  # Refresh
-    path('', lambda request: HttpResponse("🎬 Movie Review API - Visit /api/ for endpoints"), name='home'),
+    path('', TemplateView.as_view(template_name='index.html'), name='home'),
+
 ]
+# Serve static files locally
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

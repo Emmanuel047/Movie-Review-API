@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Review API - Documentation</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f8f9fa; }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 15px; text-align: center; margin-bottom: 30px; }
+        .endpoint { background: white; border-radius: 12px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .method { font-weight: bold; color: #2563eb; font-size: 18px; }
+        pre { background: #f1f5f9; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 14px; }
+        .success { color: #10b981; }
+        .copy-btn { background: #3b82f6; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; float: right; }
+        .copy-btn:hover { background: #2563eb; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+        th { background: #f8fafc; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>🎬 Movie Review API</h1>
+        <p>Full-stack Django REST API with TMDB integration</p>
+    </div>
+
+    <div class="endpoint">
+        <h2><span class="method">POST</span> /api/reviews/</h2>
+        <p>Create review with automatic TMDB movie data enrichment</p>
+        
+        <h3>Headers</h3>
+        <pre>Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: application/json</pre>
+        
+        <h3>Body</h3>
+        <button class="copy-btn" onclick="copyToClipboard('post-body')">Copy POST</button>
+        <pre id="post-body">{
+    "movie_title": "Inception",
+    "content": "Mind-bending masterpiece!",
+    "rating": 5
+}</pre>
+        
+        <h3>✅ Response (TMDB Working!)</h3>
+        <pre>{
+    "id": 1,
+    "movie_title": "Inception",
+    "content": "Mind-bending masterpiece!",
+    "rating": 5,
+    "tmdb_id": "27205",
+    "poster_path": "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
+    "tmdb_rating": 8.8,
+    "overview": "Cobb, a skilled thief..."
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <h2><span class="method">GET</span> /api/reviews/</h2>
+        <p>List all reviews with filtering, sorting, pagination</p>
+        
+        <h3>Headers</h3>
+        <pre>Authorization: Bearer YOUR_JWT_TOKEN</pre>
+        
+        <h3>Query Params</h3>
+        <table>
+            <tr><th>Param</th><th>Example</th><th>Description</th></tr>
+            <tr><td>ordering</td><td>?ordering=-rating</td><td>Sort by rating (desc)</td></tr>
+            <tr><td>search</td><td>?search=inception</td><td>Search title/content</td></tr>
+            <tr><td>page</td><td>?page=2</td><td>Pagination</td></tr>
+        </table>
+    </div>
+
+    <div class="endpoint">
+        <h2><span class="method">GET</span> /api/reviews/&lt;id&gt;/</h2>
+        <p>Retrieve single review</p>
+        <pre>GET /api/reviews/1/
+Authorization: Bearer YOUR_JWT_TOKEN</pre>
+    </div>
+
+    <script>
+        function copyToClipboard(id) {
+            navigator.clipboard.writeText(document.getElementById(id).textContent);
+            event.target.textContent = 'Copied!';
+            setTimeout(() => event.target.textContent = 'Copy POST', 2000);
+        }
+    </script>
+</body>
+</html>
